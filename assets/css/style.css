@@ -24,8 +24,9 @@ aside,main {
     font-size:1.5vmax;
     width: 30%;
 }
-.av-logo{
-    height: 260%;
+.av-logo {
+    margin-left: 15%;
+    height: 280%;
 }
 .title{
     background-color: black;
@@ -246,18 +247,23 @@ button:hover {
         height: 80%;
         justify-content: center;
         align-items: flex-start;
-
     }
     .card {
         height: 15%;
         width: 30%;
         margin-bottom: .5rem;
     }
-
+    .modal-content{
+        background-position: left;
+        width: 40%;
+    }
+    .win .modal-content,
+    .lose .modal-content{
+        background-position: center;
+    }
     .modal button{
         width: 55%;
     }
-
     .av-logo{
         height: 150%;
     }

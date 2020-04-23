@@ -20,6 +20,8 @@ var modalLose = document.getElementById('lose-modal');
 var modalStart = document.getElementById('start-modal')
 var videoBack = document.getElementById('videoBack');
 var loseDelay = 0;
+var loseTimeout;
+var timerInterval;
 var logosArray = [
     'hulk', 'captain-america',
     'strange', 'iron-man',
@@ -45,43 +47,13 @@ var lastTenAudio = new Audio();
 lastTenAudio.src = './assets/audio/lastTen.mp3';
 
 //Global Functions
-function playClick() {
-    clickAudio.currentTime = 0;
-    if (soundOn) {
-        clickAudio.play();
+function playAudio(audio){
+    audio.currentTime = 0;
+    if(soundOn){
+        audio.play()
     }
 }
-function playIncorrect() {
-    incorrectAudio.currentTime = 0;
-    if (soundOn) {
-        incorrectAudio.play();
-    }
-}
-function playCorrect() {
-    correctAudio.currentTime = 0;
-    if (soundOn) {
-        correctAudio.play();
-    }
-}
-function playEndGame() {
-    endGameAudio.currentTime = 0;
-    if (soundOn) {
-        endGameAudio.play();
-    }
-}
-function playLose() {
-    loseAudio.currentTime = 0;
-    if (soundOn) {
-        loseAudio.play();
-    }
-}
-function playLastTen() {
-    lastTenAudio.currentTime = 0
-    if (soundOn) {
-        lastTenAudio.play();
-    }
 
-}
 function tSound(e) {
     console.log(e);
     soundOn = !soundOn;
@@ -92,8 +64,6 @@ function tSound(e) {
         e.target.classList.remove('highlight');
     }
 }
-
-
 
 function timerCountDown() {
     countDown -= .05;
@@ -182,7 +152,7 @@ function handleClick(e) {
     if (event.target.className.indexOf("card-back") === -1) {
         return;
     }
-    playClick();
+    playAudio(clickAudio);
     e.target.classList.add('hidden');
     //If empty assign target as value
     if (!firstCardClicked) {
@@ -194,15 +164,20 @@ function handleClick(e) {
         gameCards.removeEventListener('click', handleClick);
         //if they match, remain unflipped, reset values, add back listner
         if (firstCardClasses === secondCardClasses) {
-            setTimeout(playCorrect, 300);
+            setTimeout(function(){
+                playAudio(correctAudio)
+            }, 300);
             removeClicked();
             addListener();
             matches++;
             attempts++;
             if (matches === maxMatches) {
+                clearInterval(timerInterval);
+                clearTimeout(loseTimeout);
+                lastTenAudio.pause();
                 setTimeout(function () {
                     modal.classList.remove('hidden');
-                    playEndGame();
+                    playAudio(endGameAudio);
                 }, 1000)
             }
         } else {
@@ -210,11 +185,10 @@ function handleClick(e) {
                 removeHidden();
                 removeClicked();
                 addListener();
-                playIncorrect();
+                playAudio(incorrectAudio);
             }, 1000)
             attempts++;
         }
-
     }
     displayStats();
 }
@@ -227,12 +201,14 @@ function startTime(e) {
         return;
     }
     modalStart.classList.add('hidden');
-    var timerInterval = setInterval(function () {
+    timerInterval = setInterval(function () {
         timerCountDown()
     }, 50);
-    setTimeout(playLastTen, loseDelay - 10000);
-    setTimeout(function () {
-        playLose();
+    setTimeout(function(){
+        playAudio(lastTenAudio);
+    }, loseDelay - 10000);
+    loseTimeout = setTimeout(function () {
+        playAudio(loseAudio);
         modalLose.classList.remove('hidden');
         clearInterval(timerInterval);
     }, loseDelay);
