@@ -1,0 +1,258 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    height: 95vh;
+    background-size: cover;
+    margin: auto;
+    font-family: 'Marvel', sans-serif;
+}
+
+aside,main {
+    height: 80%;
+    margin: 0;
+}
+
+.header{
+    height: 5%;
+    font-size: 3vmax;
+    color: white;
+}
+
+.title{
+    background-color: black;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.header > div{
+    margin: 0 2%;
+}
+
+.card-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.stats > div {
+    height: 10%;
+    background-color: rgb(26, 82, 104);
+    background-image: url(../images/galaxy.jpg);
+    background-size: cover;
+    margin-bottom: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5vmax;
+    width: 60%;
+    border-radius: 10px;
+    text-align: center;
+    color:White;
+}
+.card {
+    height: 30%;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-back:hover{
+    height: 105%;
+    width: 105%;
+    box-shadow: 0 0 10px 10px #740b0b;
+}
+.card-front, .card-back{
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    transition: all .5s;
+    border-radius: 10px;
+}
+.card-back{
+    background-image: url(../images/avengers-logo.jpg);
+    cursor: pointer;
+}
+
+.captain-america{
+    background-image: url(../images/captain-america.jpg);
+}
+
+.hawkeye{
+    background-image: url(../images/hawkeye.jpg);
+}
+
+.hulk{
+    background-image: url(../images/hulk.jpg);
+}
+
+.iron-man{
+    background-image: url(../images/iron-man.jpg);
+}
+
+.nebula{
+    background-image: url(../images/nebula.jpg);
+}
+
+.spider-man{
+    background-image: url(../images/spider-man.jpg);
+}
+
+.strange{
+    background-image: url(../images/strange.jpg);
+}
+
+.thanos {
+    background-image: url(../images/thanos.jpg);
+}
+
+.thor{
+    background-image: url(../images/thor.jpg);
+}
+.modal{
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    text-align: center;
+}
+.modal-content{
+    height: 30%;
+    width: 30%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vmax;
+    flex-wrap: nowrap;
+    background-image: url(../images/thanosGood.jpg);
+    background-size: cover;
+    background-position: center;
+    flex-direction: column;
+    color: White;
+}
+
+.modal button{
+    width: 30%;
+    height: 2vmax;
+    border-radius: 10px;
+    border: 2px inset;
+    font-family: inherit;
+    font-size: 1.5vmax;
+    font-weight: bolder;
+    background-color:black;
+    color: white;
+}
+button:hover {
+    cursor: pointer;
+}
+.stats button{
+    height: 100%;
+    width: 100%;
+    color:white;
+    background-color: transparent;
+    border: none;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+.hidden{
+    display:none;
+}
+.video-background{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+}
+
+@font-face {
+    font-family: 'avengeroregular';
+    src: url('avengeroregular-zvgl-webfont.woff2') format('woff2'),
+         url('avengeroregular-zvgl-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    body{
+        background-size: 320%;
+        background-position: center;
+        overflow: hidden;
+    }
+    .header{
+        font-size: 4vmax;
+        height: 8%;
+        margin: 0 1%;
+    }
+    .stats{
+        height: 6%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+    }
+    .stats > div {
+        font-size: 1.5vmax;
+        width: 10%;
+        height: 90%;
+        margin: 0 2px;
+    }
+    .card-box{
+        height: 80%;
+        justify-content: center;
+        align-items: flex-start;
+
+    }
+    .card {
+        height: 15%;
+        width: 30%;
+        margin-bottom: .5rem;
+    }
+
+}
+
+@media only screen
+and (min-device-width: 375px)
+and (max-device-width: 1024px)
+and (orientation: landscape)
+and (-webkit-min-device-pixel-ratio: 2) {
+    body{
+        background-size: 300%;
+        background-position: center;
+        overflow: hidden;
+    }
+    .header{
+        font-size: 4vmax;
+        height: 8%;
+        margin: 0 1%;
+    }
+
+    .card-box{
+        height: 80%;
+        justify-content: center;
+        align-items: flex-start;
+
+    }
+    .card {
+        height: 30%;
+        width: 15%;
+        margin-bottom: .5rem;
+    }
+}

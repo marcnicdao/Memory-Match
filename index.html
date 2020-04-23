@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Marvel:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/grid.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header row">
+            <div class="title">Avengers: Memory-Match</div>
+        </div>
+
+        <aside class="stats col-2">
+            <div class="col-12"><button id="toggleSound">Toggle sound</button></div>
+            <div class="col-12">Games Played</div>
+            <div class="col-12" id="gamesPlayed">0</div>
+            <div class="col-12">Attempts</div>
+            <div class="col-12" id="attempts">0</div>
+            <div class="col-12">Accuracy</div>
+            <div class="col-12" id="accuracy">0</div>
+        </aside>
+
+        <main id="gameCards" class="card-box col-10"></main>
+    </div>
+
+
+    <div class="modal hidden">
+        <div class="modal-content">
+            <p>Perfectly balanced,</p>
+             <p>as all things should be.</p>
+            <button id="reset">Play again</button>
+        </div>
+
+    </div>
+    <video id="videoBack" muted autoplay loop class="video-background">
+        <source src="./assets/audio/videoBack.mp4">
+    </video>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
