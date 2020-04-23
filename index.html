@@ -15,7 +15,9 @@
 
     <div class="container">
         <div class="header row">
-            <div class="title">Avengers: Memory-Match</div>
+            <img class="av-logo" src="./assets/images/avengers-png-logo-27969.png" alt="">
+            <div class="title">Memory-Match</div>
+            <div><div id="timer" class="timer">Time Left:</div></div>
         </div>
 
         <aside class="stats col-2">
@@ -32,14 +34,28 @@
     </div>
 
 
-    <div class="modal hidden">
+    <div id="win-modal" class="modal win hidden">
         <div class="modal-content">
             <p>Perfectly balanced,</p>
              <p>as all things should be.</p>
             <button id="reset">Play again</button>
         </div>
-
     </div>
+
+    <div id="lose-modal" class="modal lose hidden">
+        <div class="modal-content">
+            <p>I am inevetible</p>
+            <button id="reset2">Play again</button>
+        </div>
+    </div>
+    <div id="start-modal" class="modal start">
+        <div class="modal-content">
+            <button id="60" class="start-button">Easy</button>
+            <button id="45" class="start-button">Medium</button>
+            <button id="30" class="start-button">Hard</button>
+        </div>
+    </div>
+
     <video id="videoBack" muted autoplay loop class="video-background">
         <source src="./assets/audio/videoBack.mp4">
     </video>

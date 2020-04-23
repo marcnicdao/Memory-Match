@@ -18,12 +18,20 @@ aside,main {
     height: 5%;
     font-size: 3vmax;
     color: white;
+    background-color: black;
 }
-
+.timer{
+    font-size:1.5vmax;
+    width: 30%;
+}
+.av-logo{
+    height: 260%;
+}
 .title{
     background-color: black;
     padding: 5px;
     border-radius: 10px;
+    width: 50%;
 }
 
 .header > div{
@@ -35,10 +43,10 @@ aside,main {
     flex-wrap: wrap;
     justify-content: center;
 }
+
 .stats > div {
     height: 10%;
-    background-color: rgb(26, 82, 104);
-    background-image: url(../images/galaxy.jpg);
+    background: url(../images/galaxy.jpg) center;
     background-size: cover;
     margin-bottom: .5rem;
     display: flex;
@@ -49,7 +57,19 @@ aside,main {
     border-radius: 10px;
     text-align: center;
     color:White;
+    border:1px solid rgb(46, 1, 1);
 }
+
+.stats button{
+    height: 100%;
+    width: 100%;
+    color:white;
+    background-color: transparent;
+    border: none;
+    font-size: inherit;
+    font-family: inherit;
+}
+
 .card {
     height: 30%;
     margin-bottom: 0.5rem;
@@ -60,11 +80,13 @@ aside,main {
     justify-content: center;
     align-items: center;
 }
+
 .card-back:hover{
     height: 105%;
     width: 105%;
     box-shadow: 0 0 10px 10px #740b0b;
 }
+
 .card-front, .card-back{
     height: 100%;
     width: 100%;
@@ -75,6 +97,7 @@ aside,main {
     transition: all .5s;
     border-radius: 10px;
 }
+
 .card-back{
     background-image: url(../images/avengers-logo.jpg);
     cursor: pointer;
@@ -134,16 +157,26 @@ aside,main {
     align-items: center;
     font-size: 2vmax;
     flex-wrap: nowrap;
-    background-image: url(../images/thanosGood.jpg);
     background-size: cover;
     background-position: center;
     flex-direction: column;
     color: White;
 }
+.start .modal-content {
+    background-image: url(../images/captainStart.jpg);
+}
+
+.win .modal-content{
+    background-image: url(../images/thanosGood.jpg);
+}
+
+.lose .modal-content{
+    background-image: url(../images/thanosBad.jpg);
+}
 
 .modal button{
     width: 30%;
-    height: 2vmax;
+    height: 3vmax;
     border-radius: 10px;
     border: 2px inset;
     font-family: inherit;
@@ -155,18 +188,13 @@ aside,main {
 button:hover {
     cursor: pointer;
 }
-.stats button{
-    height: 100%;
-    width: 100%;
-    color:white;
-    background-color: transparent;
-    border: none;
-    font-size: inherit;
-    font-family: inherit;
-}
+
 
 .hidden{
     display:none;
+}
+.highlight {
+    box-shadow: 0 0 2px 2px #056b33;
 }
 .video-background{
     position: fixed;
@@ -226,6 +254,13 @@ button:hover {
         margin-bottom: .5rem;
     }
 
+    .modal button{
+        width: 55%;
+    }
+
+    .av-logo{
+        height: 150%;
+    }
 }
 
 @media only screen
@@ -255,4 +290,5 @@ and (-webkit-min-device-pixel-ratio: 2) {
         width: 15%;
         margin-bottom: .5rem;
     }
+
 }

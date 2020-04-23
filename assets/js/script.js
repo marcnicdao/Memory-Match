@@ -8,17 +8,23 @@ var matches = 0;
 var maxMatches = 9;
 var attempts = 0;
 var gamesPlayed = 0;
-var gameCards = document.getElementById('gameCards');
-var modal = document.querySelector('.modal')
-var resetButton = document.getElementById('reset')
-var toggleSound = document.getElementById('toggleSound')
+var countDown = 0;
 var soundOn = false;
-var videoBack = document.getElementById('videoBack')
+var gameCards = document.getElementById('gameCards');
+var startScreen = document.getElementById('start-modal');
+var resetButton = document.getElementById('reset');
+var resetButton2 = document.getElementById('reset2');
+var toggleSound = document.getElementById('toggleSound');
+var modal = document.querySelector('#win-modal');
+var modalLose = document.getElementById('lose-modal');
+var modalStart = document.getElementById('start-modal')
+var videoBack = document.getElementById('videoBack');
+var loseDelay = 0;
 var logosArray = [
-    'hulk','captain-america',
-    'strange','iron-man',
-    'hawkeye','nebula',
-    'spider-man','thor',
+    'hulk', 'captain-america',
+    'strange', 'iron-man',
+    'hawkeye', 'nebula',
+    'spider-man', 'thor',
     'thanos', 'hulk', 'captain-america',
     'strange', 'iron-man',
     'hawkeye', 'nebula',
@@ -33,26 +39,66 @@ var clickAudio = new Audio();
 clickAudio.src = './assets/audio/click.mp3';
 var endGameAudio = new Audio();
 endGameAudio.src = './assets/audio/pretty-isnt-it.mp3';
+var loseAudio = new Audio();
+loseAudio.src = './assets/audio/thanosAngry.mp3';
+var lastTenAudio = new Audio();
+lastTenAudio.src = './assets/audio/lastTen.mp3';
+
 //Global Functions
-function playClick(){
+function playClick() {
     clickAudio.currentTime = 0;
-    clickAudio.play();
+    if (soundOn) {
+        clickAudio.play();
+    }
 }
-function playIncorrect(){
+function playIncorrect() {
     incorrectAudio.currentTime = 0;
-    incorrectAudio.play();
+    if (soundOn) {
+        incorrectAudio.play();
+    }
 }
-function playCorrect(){
+function playCorrect() {
     correctAudio.currentTime = 0;
-    correctAudio.play();
+    if (soundOn) {
+        correctAudio.play();
+    }
 }
-function playEndGame(){
+function playEndGame() {
     endGameAudio.currentTime = 0;
-    endGameAudio.play();
+    if (soundOn) {
+        endGameAudio.play();
+    }
 }
-function tSound(){
+function playLose() {
+    loseAudio.currentTime = 0;
+    if (soundOn) {
+        loseAudio.play();
+    }
+}
+function playLastTen() {
+    lastTenAudio.currentTime = 0
+    if (soundOn) {
+        lastTenAudio.play();
+    }
+
+}
+function tSound(e) {
+    console.log(e);
     soundOn = !soundOn;
     videoBack.muted = !videoBack.muted;
+    if (soundOn) {
+        e.target.classList.add('highlight');
+    } else {
+        e.target.classList.remove('highlight');
+    }
+}
+
+
+
+function timerCountDown() {
+    countDown -= .05;
+    var timer = document.getElementById('timer');
+    timer.textContent = "Time Left:" + countDown.toFixed(2);
 }
 
 function addListener() {
@@ -83,14 +129,16 @@ function calculateAccuracy(attempts, matches) {
 }
 
 function resetGame() {
-    gameCards.innerHTML =' ';
+    gameCards.innerHTML = ' ';
     attempts = 0;
     matches = 0;
     gamesPlayed++
     displayStats();
     shuffle();
     makeCards();
-    modal.classList.add('hidden')
+    modal.className = 'modal win hidden';
+    modalLose.className = 'modal lose hidden';
+    modalStart.className = 'modal start';
 }
 
 function shuffle() {
@@ -122,16 +170,19 @@ function makeCards() {
 //Event Handler
 
 addListener();
-
+startScreen.addEventListener('click', startTime)
+resetButton.addEventListener('click', resetGame)
+resetButton2.addEventListener('click', resetGame)
+toggleSound.addEventListener('click', tSound);
+shuffle();
+makeCards();
 
 function handleClick(e) {
     //check if firstCardClicked is empty
     if (event.target.className.indexOf("card-back") === -1) {
         return;
     }
-    if (soundOn){
-        playClick();
-    }
+    playClick();
     e.target.classList.add('hidden');
     //If empty assign target as value
     if (!firstCardClicked) {
@@ -149,24 +200,17 @@ function handleClick(e) {
             matches++;
             attempts++;
             if (matches === maxMatches) {
-                setTimeout(function(){
+                setTimeout(function () {
                     modal.classList.remove('hidden');
                     playEndGame();
                 }, 1000)
             }
-        } else if (soundOn){
-            setTimeout(function () {
-                removeHidden();
-                removeClicked();
-                addListener();
-                playIncorrect();
-            }, 1000)
-            attempts++;
         } else {
             setTimeout(function () {
                 removeHidden();
                 removeClicked();
                 addListener();
+                playIncorrect();
             }, 1000)
             attempts++;
         }
@@ -175,7 +219,21 @@ function handleClick(e) {
     displayStats();
 }
 
-resetButton.addEventListener('click', resetGame)
-toggleSound.addEventListener('click', tSound);
-shuffle();
-makeCards();
+function startTime(e) {
+    var newTime = Number(e.target.id);
+    countDown = newTime;
+    loseDelay = newTime * 1000;
+    if (e.target.className != 'start-button') {
+        return;
+    }
+    modalStart.classList.add('hidden');
+    var timerInterval = setInterval(function () {
+        timerCountDown()
+    }, 50);
+    setTimeout(playLastTen, loseDelay - 10000);
+    setTimeout(function () {
+        playLose();
+        modalLose.classList.remove('hidden');
+        clearInterval(timerInterval);
+    }, loseDelay);
+}
