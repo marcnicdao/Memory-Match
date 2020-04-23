@@ -31,6 +31,8 @@ var incorrectAudio = new Audio();
 incorrectAudio.src = './assets/audio/incorrect.wav';
 var clickAudio = new Audio();
 clickAudio.src = './assets/audio/click.mp3';
+var endGameAudio = new Audio();
+endGameAudio.src = './assets/audio/pretty-isnt-it.mp3';
 //Global Functions
 function playClick(){
     clickAudio.currentTime = 0;
@@ -43,6 +45,10 @@ function playIncorrect(){
 function playCorrect(){
     correctAudio.currentTime = 0;
     correctAudio.play();
+}
+function playEndGame(){
+    endGameAudio.currentTime = 0;
+    endGameAudio.play();
 }
 function tSound(){
     soundOn = !soundOn;
@@ -137,13 +143,16 @@ function handleClick(e) {
         gameCards.removeEventListener('click', handleClick);
         //if they match, remain unflipped, reset values, add back listner
         if (firstCardClasses === secondCardClasses) {
-            setTimeout(playCorrect, 250);
+            setTimeout(playCorrect, 300);
             removeClicked();
             addListener();
             matches++;
             attempts++;
             if (matches === maxMatches) {
-                modal.classList.remove('hidden');
+                setTimeout(function(){
+                    modal.classList.remove('hidden');
+                    playEndGame();
+                }, 1000)
             }
         } else if (soundOn){
             setTimeout(function () {
