@@ -22,6 +22,7 @@ var videoBack = document.getElementById('videoBack');
 var loseDelay = 0;
 var loseTimeout;
 var timerInterval;
+var lastTenTimeout;
 var logosArray = [
     'hulk', 'captain-america',
     'strange', 'iron-man',
@@ -174,6 +175,7 @@ function handleClick(e) {
             if (matches === maxMatches) {
                 clearInterval(timerInterval);
                 clearTimeout(loseTimeout);
+                clearTimeout(lastTenTimeout);
                 lastTenAudio.pause();
                 setTimeout(function () {
                     modal.classList.remove('hidden');
@@ -204,7 +206,7 @@ function startTime(e) {
     timerInterval = setInterval(function () {
         timerCountDown()
     }, 50);
-    setTimeout(function(){
+    lastTenTimeout = setTimeout(function(){
         playAudio(lastTenAudio);
     }, loseDelay - 10000);
     loseTimeout = setTimeout(function () {
