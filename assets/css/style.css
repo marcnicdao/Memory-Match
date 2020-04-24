@@ -32,11 +32,32 @@ aside,main {
     background-color: black;
     padding: 5px;
     border-radius: 10px;
-    width: 50%;
+    width: 30%;
 }
 
 .header > div{
     margin: 0 2%;
+}
+
+.top-reset{
+    width: 5%;
+    height: 100%;
+}
+
+.header button {
+    height: 100%;
+    background: url(../images/galaxy.jpg) center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2vmax;
+    width: 100%;
+    border-radius: 5px;
+    text-align: center;
+    color:White;
+    border:1px solid rgb(46, 1, 1);
+    font-family: inherit;
 }
 
 .card-box {
@@ -152,7 +173,7 @@ aside,main {
 .modal-content{
     height: 30%;
     width: 30%;
-    border-radius: 10px;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -267,6 +288,9 @@ button:hover {
     .av-logo{
         height: 150%;
     }
+    .top-reset{
+        height: 20%;
+    }
 }
 
 @media only screen
@@ -296,5 +320,7 @@ and (-webkit-min-device-pixel-ratio: 2) {
         width: 15%;
         margin-bottom: .5rem;
     }
-
+    .top-reset {
+        height:40%;
+    }
 }
