@@ -14,8 +14,9 @@ var gameCards = document.getElementById('gameCards');
 var startScreen = document.getElementById('start-modal');
 var resetButton = document.getElementById('reset');
 var resetButton2 = document.getElementById('reset2');
+var resetTop = document.getElementById('reset-top')
 var toggleSound = document.getElementById('toggleSound');
-var modal = document.querySelector('#win-modal');
+var modalWin = document.querySelector('#win-modal');
 var modalLose = document.getElementById('lose-modal');
 var modalStart = document.getElementById('start-modal')
 var videoBack = document.getElementById('videoBack');
@@ -61,8 +62,10 @@ function tSound(e) {
     videoBack.muted = !videoBack.muted;
     if (soundOn) {
         e.target.classList.add('highlight');
+        lastTenAudio.muted = false;
     } else {
         e.target.classList.remove('highlight');
+        lastTenAudio.muted = true;
     }
 }
 
@@ -107,9 +110,13 @@ function resetGame() {
     displayStats();
     shuffle();
     makeCards();
-    modal.className = 'modal win hidden';
+    modalWin.className = 'modal win hidden';
     modalLose.className = 'modal lose hidden';
     modalStart.className = 'modal start';
+    clearInterval(timerInterval);
+    clearTimeout(loseTimeout);
+    clearTimeout(lastTenTimeout);
+    lastTenAudio.pause();
 }
 
 function shuffle() {
@@ -141,9 +148,10 @@ function makeCards() {
 //Event Handler
 
 addListener();
-startScreen.addEventListener('click', startTime)
-resetButton.addEventListener('click', resetGame)
-resetButton2.addEventListener('click', resetGame)
+startScreen.addEventListener('click', startTime);
+resetButton.addEventListener('click', resetGame);
+resetButton2.addEventListener('click', resetGame);
+resetTop.addEventListener('click', resetGame);
 toggleSound.addEventListener('click', tSound);
 shuffle();
 makeCards();
@@ -178,7 +186,7 @@ function handleClick(e) {
                 clearTimeout(lastTenTimeout);
                 lastTenAudio.pause();
                 setTimeout(function () {
-                    modal.classList.remove('hidden');
+                    modalWin.classList.remove('hidden');
                     playAudio(endGameAudio);
                 }, 1000)
             }
@@ -207,7 +215,7 @@ function startTime(e) {
         timerCountDown()
     }, 50);
     lastTenTimeout = setTimeout(function(){
-        playAudio(lastTenAudio);
+        lastTenAudio.play();
     }, loseDelay - 10000);
     loseTimeout = setTimeout(function () {
         playAudio(loseAudio);
