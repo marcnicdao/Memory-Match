@@ -7,6 +7,9 @@ body {
     background-size: cover;
     margin: auto;
     font-family: 'Marvel', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center
 }
 
 aside,main {
