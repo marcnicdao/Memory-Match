@@ -35,18 +35,13 @@ var logosArray = [
     'spider-man', 'thor',
     'thanos'
 ]
-var correctAudio = new Audio();
-correctAudio.src = './assets/audio/beep.wav'
-var incorrectAudio = new Audio();
-incorrectAudio.src = './assets/audio/incorrect.wav';
-var clickAudio = new Audio();
-clickAudio.src = './assets/audio/click.mp3';
-var endGameAudio = new Audio();
-endGameAudio.src = './assets/audio/pretty-isnt-it.mp3';
-var loseAudio = new Audio();
-loseAudio.src = './assets/audio/thanosAngry.mp3';
-var lastTenAudio = new Audio();
-lastTenAudio.src = './assets/audio/lastTen.mp3';
+var correctAudio = new Audio('./assets/audio/beep.wav');
+var incorrectAudio = new Audio('./assets/audio/incorrect.wav');
+var clickAudio = new Audio('./assets/audio/click.mp3');
+var endGameAudio = new Audio('./assets/audio/pretty-isnt-it.mp3');
+var loseAudio = new Audio('./assets/audio/thanosAngry.mp3');
+var lastTenAudio = new Audio('./assets/audio/lastTen.mp3');
+
 
 //Global Functions
 function playAudio(audio){

@@ -36,6 +36,7 @@ aside,main {
     padding: 5px;
     border-radius: 10px;
     width: 30%;
+    font-family: 'astron boy video';
 }
 
 .header > div{
@@ -231,13 +232,12 @@ button:hover {
 }
 
 @font-face {
-    font-family: 'avengeroregular';
-    src: url('avengeroregular-zvgl-webfont.woff2') format('woff2'),
-         url('avengeroregular-zvgl-webfont.woff') format('woff');
+    font-family: 'astron boy video';
+    src: url('/assets/fonts/astro-video.ttf') format('ttf');
     font-weight: normal;
     font-style: normal;
-
 }
+
 
 @media only screen
   and (min-device-width: 375px)
