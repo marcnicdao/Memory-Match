@@ -9,7 +9,8 @@ body {
     font-family: 'Marvel', sans-serif;
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
+    padding-top: 50px
 }
 
 aside,main {
