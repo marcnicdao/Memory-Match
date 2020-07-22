@@ -36,7 +36,8 @@ aside,main {
     padding: 5px;
     border-radius: 10px;
     width: 30%;
-    font-family: 'astron boy video';
+    font-family: "astron boy video", sans-serif;
+    text-align: center;
 }
 
 .header > div{
@@ -232,8 +233,8 @@ button:hover {
 }
 
 @font-face {
-    font-family: 'astron boy video';
-    src: url('/assets/fonts/astro-video.ttf') format('ttf');
+    font-family: "astron boy video";
+    src: url("../fonts/astron-boy-video.woff") format('woff');
     font-weight: normal;
     font-style: normal;
 }
