@@ -199,6 +199,7 @@ function handleClick(e) {
 }
 
 function startTime(e) {
+    lastTenAudio.muted = true;
     var newTime = Number(e.target.id);
     countDown = newTime;
     loseDelay = newTime * 1000;
